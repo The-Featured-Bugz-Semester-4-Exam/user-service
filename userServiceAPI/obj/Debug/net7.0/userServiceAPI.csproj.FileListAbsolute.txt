@@ -31,3 +31,16 @@ C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServi
 C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\obj\Debug\net7.0\userServiceAPI.pdb
 C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\obj\Debug\net7.0\userServiceAPI.genruntimeconfig.cache
 C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\obj\Debug\net7.0\ref\userServiceAPI.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\AWSSDK.Core.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\AWSSDK.SecurityToken.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\DnsClient.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\MongoDB.Bson.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\MongoDB.Driver.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\MongoDB.Driver.Core.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\MongoDB.Libmongocrypt.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\SharpCompress.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\Snappier.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\ZstdSharp.dll
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\jacob\Pictures\The-Featured-Bugz-Semester-4-Exam\user-service\userServiceAPI\bin\Debug\net7.0\runtimes\win\native\mongocrypt.dll
