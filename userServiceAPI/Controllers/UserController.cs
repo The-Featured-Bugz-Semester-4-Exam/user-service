@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using userServiceAPI.Models;
+using System.Security.Permissions;
 namespace userServiceAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api")]
 public class UserController : ControllerBase
 {
 
@@ -14,24 +15,19 @@ public class UserController : ControllerBase
 
     //Collection i selve databasen
     private string userCol = string.Empty;
-
+    private string database = string.Empty;
     public UserController(ILogger<UserController> logger, IConfiguration configuration)
     {
-        var server = configuration["server"] ?? string.Empty;
-        var port = configuration["port"] ?? string.Empty;
-        var database = configuration["database"] ?? string.Empty;
+        _logger = logger;
+        
+        database = configuration["database"] ?? string.Empty;
         userCol = configuration["userCol"] ?? string.Empty;
         
-
-
-        var connectionString = $"mongodb://{server}:{port}/";
-
-        var client = new MongoClient(connectionString);
+        var client = new MongoClient($"mongodb://{configuration["server"] ?? string.Empty}:{configuration["port"] ?? string.Empty}/");
         _database = client.GetDatabase(database);
-        _logger = logger;
     }
     [HttpGet("GetUser")]
-    public User GetUser(LoginModel loginModel){
+    public User GetUser([FromQuery] LoginModel loginModel){
         var collection = _database.GetCollection<User>(userCol);
         User user =  collection.Find(x => x.UserName == loginModel.UserName && x.UserPassword == loginModel.UserPassword).FirstOrDefault();
         return  user;
