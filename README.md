@@ -106,7 +106,7 @@ The User Service API can also be set up using Docker. A Dockerfile is provided t
 
 1. Build the Docker image using the following command:
 ```bash
-docker build -t user-service-image Dockerfile .
+docker build -t user-service-image -f Dockerfile .
 ```
 2. One the image is built, you can run the API container:
 ```bash
