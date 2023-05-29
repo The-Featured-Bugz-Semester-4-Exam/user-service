@@ -18,9 +18,12 @@ jobs:
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run:
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      run: docker build . --file Dockerfile --tag ${DOCKER_USER}/https://github.com/The-Featured-Bugz-Semester-4-Exam/user-service.git:latest-dev
+      run: docker build . --file userServiceAPI/Dockerfile --tag ${DOCKER_USER}/user-service:latest-dev
+    - name: Push Docker image to Docker Hub
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      run: docker push ${DOCKER_USER}/user-service:latest-dev
