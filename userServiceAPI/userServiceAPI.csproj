@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	<Company>The-Featured-Bugz </Company>
-	<FileVersion> 0.2.0 </FileVersion>
+	<FileVersion>1.0.0 </FileVersion>
 	<Description>
     0.1.0 Eksemplar på Users API
     0.1.1 IAuctionResult og Logging sat på.
