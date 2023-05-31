@@ -53,13 +53,14 @@ public class UserController : ControllerBase
     {
         var collection = _database.GetCollection<User>(userCol);
         User user = collection.Find(x => x.UserName == loginModel.UserName && x.UserPassword == loginModel.UserPassword).FirstOrDefault();
-
+        
         if (user != null)
         {
             _logger.LogInformation("User er fundet");
             return Ok(user);
         }else{
-            return NotFound();
+            _logger.LogInformation("Kan ikke finde bruger: " + loginModel.UserName);
+            return NotFound("Kan ikke finde brugeren: " + loginModel.UserName);
         }
     }
 
