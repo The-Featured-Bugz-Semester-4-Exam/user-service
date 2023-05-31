@@ -84,7 +84,6 @@ Before running the project, make sure you have the following installed:
 - Visual Studio Code or Visual Studio
 - Can use Docker desktop
 - Can use Postman for api calls.
-- .Net 7.0
 
 **Installation**
 1. Clone the repository to your local machine.

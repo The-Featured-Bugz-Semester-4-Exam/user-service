@@ -6,7 +6,7 @@ using System.Security.Permissions;
 namespace userServiceAPI.Controllers;
 
 [ApiController]
-[Route("api")]
+[Route("[controller]")]
 public class UserController : ControllerBase
 {
 
