@@ -9,31 +9,33 @@ namespace userServiceAPI.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-
     private readonly ILogger<UserController> _logger;
-
     private readonly IMongoDatabase _database;
 
-    //Collection i selve databasen
+    // Collection name in the database
     private string userCol = string.Empty;
     private string database = string.Empty;
+
     public UserController(ILogger<UserController> logger, IConfiguration configuration)
     {
         _logger = logger;
 
-        //Vise, hvilken ip adresse denne service er på.
+        // Get the host name and IP address for logging purposes
         var hostName = System.Net.Dns.GetHostName();
         var ips = System.Net.Dns.GetHostAddresses(hostName);
         var _ipaddr = ips.First().MapToIPv4().ToString();
         _logger.LogInformation(1, $"user-service responding from {_ipaddr}");
 
-        //Få forbindelse til Mongodb
+        // Get the database and collection names from the configuration
         database = configuration["database"] ?? string.Empty;
         userCol = configuration["userCol"] ?? string.Empty;
+
+        // Create a MongoClient instance and connect to the database
         var client = new MongoClient($"{configuration["connectionString"]}");
         _database = client.GetDatabase(database);
     }
 
+    // Get API endpoint to retrieve assembly version information
     [HttpGet("version")]
     public IEnumerable<string> Get()
     {
@@ -46,44 +48,54 @@ public class UserController : ControllerBase
         return properties;
     }
 
-
-
+    // Get user API endpoint
     [HttpGet("getUser")]
     public IActionResult GetUser([FromQuery] LoginModel loginModel)
     {
         var collection = _database.GetCollection<User>(userCol);
+
+        // Find the user based on the provided login credentials
         User user = collection.Find(x => x.UserName == loginModel.UserName && x.UserPassword == loginModel.UserPassword).FirstOrDefault();
-        
+
         if (user != null)
         {
-            _logger.LogInformation("User er fundet");
+            _logger.LogInformation("User found");
             return Ok(user);
-        }else{
-            _logger.LogInformation("Kan ikke finde bruger: " + loginModel.UserName);
-            return NotFound("Kan ikke finde brugeren: " + loginModel.UserName);
+        }
+        else
+        {
+            // Return a NotFound response if the user is not found
+            string feedback = "Can't find user: " + loginModel.UserName;
+            _logger.LogInformation(feedback);
+            return NotFound(feedback);
         }
     }
 
+    // Post user API endpoint
     [HttpPost("postUser")]
     public IActionResult PostUser(User user)
     {
         var collection = _database.GetCollection<User>(userCol);
-        var highestAuction = collection.Find(_ => true)
+
+        // Get the highest UserID from the collection
+        var highestUser = collection.Find(_ => true)
             .SortByDescending(a => a.UserID)
             .FirstOrDefault();
 
-        //Være sikker på der ikke er det samme id to gange.
         int nextUserID = 1;
-        if (highestAuction != null)
+        if (highestUser != null)
         {
-            nextUserID = highestAuction.UserID + 1;
+            // Set the nextUserID to the highest UserID + 1
+            nextUserID = highestUser.UserID + 1;
         }
-        // Opret den nye auktion med det næste auktions-ID
+
         user.UserID = nextUserID;
 
-        // Indsæt auktionen i MongoDB
+        // Insert the user into the collection
         _database.GetCollection<User>(userCol).InsertOne(user);
-        _logger.LogInformation("User er tilføjet");
-        return Ok("User er tilføjet");
+
+        string feedback = "User added";
+        _logger.LogInformation(feedback);
+        return Ok(feedback);
     }
 }
