@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using Microsoft.AspNetCore;
 using userServiceAPI.Models;
-using System.Security.Permissions;
 namespace userServiceAPI.Controllers;
 
 [ApiController]
